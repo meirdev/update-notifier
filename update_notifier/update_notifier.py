@@ -6,9 +6,9 @@ from typing import Callable
 
 from .config import Config
 from .latest_version import LatestVersion
+from .notification import Notification
 from .semver import parse_semver
 from .types import SupportsLessThan
-from .notification import Notification
 
 DAY = timedelta(days=1)
 
@@ -66,7 +66,9 @@ class UpdateNotifier:
 
     def notify(self, notification: Notification) -> None:
         if self.update:
-            notification.print(self.name, self.current_version, self.update_latest_version)
+            notification.print(
+                self.name, self.current_version, self.update_latest_version
+            )
 
 
 def update_notifier(
